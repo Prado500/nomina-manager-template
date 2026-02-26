@@ -46,7 +46,7 @@ While this repository is currently optimized for local containerized deployment 
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/Prado500/nomina-manager-template.git](https://github.com/Prado500/nomina-manager-template.git)
+git clone https://github.com/Prado500/nomina-manager-template.git
 cd nomina-manager-template
 ```
 **Frontend UI:** http://localhost:3000
