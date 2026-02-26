@@ -1,130 +1,100 @@
-# ✈️ FlyBlue API - Backend Architecture
+# 🏢 SalesManager - Full Stack Architecture
 
-![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)
-![Azure DevOps](https://img.shields.io/badge/Azure_DevOps-0078D7?style=for-the-badge&logo=azuredevops)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker)
 
 ## 📋 Context & Contributions
 
-This repository hosts the backend for **FlyBlue**, a flight management system developed as a collaborative academic project. The architecture was designed to be scalable, asynchronous, and secure.
+This repository hosts the Full Stack codebase for **SalesManager**, a sales force and payroll management system initially developed as a foundational project during the **Misión TIC 2022** certification. The architecture demonstrates the integration of a robust Enterprise backend with a highly reactive, modernized frontend.
 
-### 👨‍💻 My Contributions (David De Los Reyes - Backend Engineer)
-As the lead for **Architecture & Deployment**, my specific contributions were:
-* **Database Stability (SQLAlchemy):** Refactored the data models to resolve critical circular dependencies and ensured seamless automatic table generation from Python code.
-* **Core Business Logic:** Implemented key endpoints for flight scheduling, inventory management, and booking workflows.
-* **CI/CD & DevOps:** Configured the Continuous Integration pipeline in **Azure DevOps**, automating containerized deployments to Azure App Service.
-* **Debugging:** Troubleshooting and resolving integration conflicts between Pydantic schemas and the database connector.
-
-*(Note: The JWT Authentication module and initial project boilerplate were developed in collaboration with teammate S. Manchola).*
+### 👨‍💻 My Contributions (David De Los Reyes - Full Stack Engineer)
+As the lead developer refactoring this template, my specific contributions were:
+* **Frontend Modernization (React):** Upgraded legacy code to support modern Node.js environments. Designed a custom UI/UX featuring *Glassmorphism*, *Neon Glow* effects, and a fully functional Dark/Light Mode toggle built over Bootstrap.
+* **Backend Integration (Spring Boot):** Connected the React SPA to the Java REST API using Axios, ensuring smooth asynchronous data fetching and state management.
+* **Containerization (Docker):** Wrote the Dockerfiles and `docker-compose.yml` to orchestrate the entire Full Stack environment (Frontend, Backend, and MongoDB), resolving inter-container network routing.
+* **Database Stability (MongoDB):** Configured dynamic environment variables to seamlessly switch between local and containerized MongoDB instances without hardcoding credentials.
 
 ---
 
 ## 🚀 System Overview
 
-Flight management system developed with **FastAPI** (Asynchronous mode), **PostgreSQL**, and **JWT** authentication. The project features a fully automated **CI/CD** workflow using **Azure DevOps**, deploying to **Azure App Service for Containers**.
+A CRUD-based management system developed with **React** (Frontend), **Java Spring Boot** (Backend), and **MongoDB** (Database). The project acts as a template for calculating payrolls, managing sales force metrics, and applying dynamic bonuses.
 
-### Key Features
-- **JWT Authentication:** Role-based access control (Client & Admin).
-- **Flight Management:** Search, booking, and payment processing logic.
-- **Admin Panel:** Endpoints to manage cities, aircraft, and baggage types.
-- **PostgreSQL Database:** Docker-ready relational database.
-- **Auto-Documentation:** Swagger/OpenAPI available at `/docs`.
-- **Automated CI/CD:** Azure DevOps Pipelines.
-- **Multi-Environment Deployment:** Dev, Test, Prod.
+### ✨ Key Features
+- **Modern UI/UX:** Responsive design with dynamic Dark/Light themes and custom CSS hover physics.
+- **RESTful API:** Robust Java backend handling business logic and payroll calculations.
+- **Advanced Data Persistence:** Utilizes Spring Data MongoDB for robust database interactions, implementing both auto-generated Derived Query Methods (`findBy...`) and custom native JSON queries (`@Query`) for complex data filtering.
+- **Containerized Stack:** Fully Dockerized for "one-click" local deployment.
+- **Single Page Application (SPA):** Instant navigation without page reloads using React Router DOM.
 
-## ☁️ Deployed Environments (CI/CD)
+## ☁️ Deployment Readiness
 
-The pipeline automatically deploys to specific environments based on the Git branch:
-
-| Environment | Branch | Base API URL |
-| :--- | :--- | :--- |
-| **Development** | `dev` | `flyblue-api-server-dev...azurewebsites.net` |
-| **Testing** | `test` | `flyblue-api-server-test...azurewebsites.net` |
-| **Production** | `main` | `flyblue-api-server-main...azurewebsites.net` |
+While this repository is currently optimized for local containerized deployment via Docker Compose, the architecture is designed to be easily integrated into CI/CD pipelines (such as Azure DevOps or GitHub Actions) deploying to cloud services like Azure App Service or AWS ECS.
 
 ## 🛠️ Tech Stack
 
-* **Language:** Python 3.11+
-* **Framework:** FastAPI (Asynchronous)
-* **ORM:** SQLAlchemy
-* **Database:** PostgreSQL
+* **Frontend:** React.js, React Router DOM, Axios, Bootstrap (Custom CSS)
+* **Backend:** Java 17, Spring Boot, Spring Data MongoDB
+* **Database:** MongoDB
 * **Containerization:** Docker & Docker Compose
-* **Validation:** Pydantic
+* **Architecture:** REST API, MVC Pattern, SPA
 
 ## ⚙️ Local Installation & Setup
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/Prado500/flyblue-backend-api.git](https://github.com/Prado500/flyblue-backend-api.git)
-cd flyblue-backend-api
+git clone [https://github.com/Prado500/nomina-manager-template.git](https://github.com/Prado500/nomina-manager-template.git)
+cd nomina-manager-template
 ```
+**Frontend UI:** http://localhost:3000
 
-### 2. Configure Environment Variables
-```bash
-# Create .env file based on the example
-cp .env.example .env
-```
+**Backend API:** http://localhost:8080
 
-### 3. Run with Docker (Recommended)
-```bash
-docker-compose up -d --build
-```
-**API:** http://localhost:8000
+**Database:** localhost:27017
 
-**Docs:** http://localhost:8000/docs
+## 👤 Employee Registration Boilerplate
 
-**DB:** localhost:5432
+To register a new employee/payroll via API testing tools (like Postman) or the Frontend UI, you can use this JSON template within the request body:
 
-
-
-## 👤 User Registration Boilerplate
-
-**To register a new user, you can send this JSON template within the request body (test scenario)**
 ```JSON
 {
-  "nombre": "flyblue-test",
-  "correo": "flyblue-test@flyblue.com",
-  "contraseña": "pass"
+  "id": "EMP-001",
+  "nombre": "David Alejandro",
+  "apellido": "De los Reyes Ostos",
+  "identificacion": 1000222333,
+  "telefono": 3100000000,
+  "ventas": 1500000,
+  "prestaciones": 500000,
+  "salario": 2500000,
+  "fRegistro": "2026-02-26T16:18:33.000Z"
 }
+
 ```
-**NOTE:** For login, you can use the same JSON excluding the nombre field. After loging in, the API will provide an user-specific token.
-
-
 
 ## 📚 Main Endpoints
 
-🔓**Public**
+🔓 **Public API (CORS enabled for localhost:3000)**
+
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| **POST** | `/v1/auth/register` | `Register new user (Use registration boilerplate provided above)` |
-| **POST** | `/v1/auth/login` | `Login (Obtain Bearer Token)` |
+| **GET** | `/empleado` | `Retrieve all employees and their current payroll status` |
+| **POST** | `/empleado` | `Register a new employee into the MongoDB database` |
+| **GET** | `/empleado/{id}` | `Retrieve a specific employee by their database ID` |
+| **GET** | `/empleado/nombre/{nombre}` | `Search and filter employees by their exact first name` |
+| **GET** | `/empleado/apellido/{apellido}` | `Search and filter employees by their exact last name` |
+| **GET** | `/empleado/identificacion/{identificacion}` | `Search and filter employees by their ID number` |
+| **DELETE** | `/empleado/{id}` | `Remove an employee record from the system` |
 
+*(Note: The API currently supports creation, deletion, and advanced filtering. Employee updates are handled via re-entry).*
 
+## 🔒 Architecture & Security
 
-🔒**Private**
+**CORS Configured:** The backend explicitly allows Cross-Origin Resource Sharing from the React frontend running on port 3000.
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| **GET** | `/v1/vuelos` | `Search flights (Filters: origin, destination, date)` |
-| **POST** | `/v1/cliente/reservas` | `Create a new booking` |
-| **POST** | `/v1/admin/vuelos` | `(Admin) Create a new flight route` |
+**Database Protection:** Connection URIs abstracted via environment variables. NoSQL Injection handled natively by Spring Data MongoDB repositories.
 
-
-(For the full list of endpoints, JSON schemas, and API testing, visit the interactive documentation at /docs when running the project).
-
-
-
-## 🔒 Security
-
-**JWT Authentication:** Non-expiring tokens for testing convenience.
-
-**Roles:** Client / Administrator.
-
-**Hashing:** Passwords encrypted using bcrypt.
-
-Backend Architecture optimized by **David De Los Reyes.**
-
-
+Full Stack Architecture modernized by David Alejandro De Los Reyes Ostos.
