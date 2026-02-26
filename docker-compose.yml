@@ -12,7 +12,7 @@ services:
   # 2. Backend Java Spring Boot
   backend:
     build: 
-      context: ./apiRestFinal
+      context: ./nmt-backend-api
     container_name: nomina_backend
     ports:
       - "8080:8080"
@@ -28,7 +28,7 @@ services:
   # 3. Frontend React
   frontend:
     build: 
-      context: ./frontend-react-router
+      context: ./nmt-frontend-react-router
     container_name: nomina_frontend
     ports:
       - "3000:3000"
