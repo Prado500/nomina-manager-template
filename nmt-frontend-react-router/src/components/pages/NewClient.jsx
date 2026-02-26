@@ -29,31 +29,33 @@ const NewClient = () => {
 
     const URL = "http://localhost:8080/empleado/";
     const history = useHistory();
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await axios.post(URL, data);
-            
+
             if(response.status === 200 || response.status === 201) {
                 Swal.fire({
-                    title: "¡Realizado Exitosamente!",
-                    text: `Empleado con C.C. ${data.identificacion} generado y listado`,
-                    icon: "success",
-                    // Aseguramos que la alerta respete el Modo Noche
-                    customClass: { popup: 'swal-modal', title: 'swal2-title', htmlContainer: 'swal2-html-container' }
+                    title: "¡Registro Exitoso!",
+                    text: `Empleado ${data.nombre} guardado correctamente.`,
+                    icon: "success"
                 });
                 history.push("/empleado");
             }
         } catch (error) {
-            console.error("Error en la petición:", error);
+            // Extraemos el mensaje específico enviado por el backend
+            // Si no existe (ej. servidor apagado), usamos uno por defecto
+            const errorMessage = error.response?.data?.message || "Error de conexión: El servidor no responde.";
+
             Swal.fire({
-                title: "Algo Salió Mal :C",
-                text: "No se pudo generar el registro. Verifica tu conexión al servidor.",
+                title: "Error de Validación",
+                text: errorMessage, // Aquí se mostrará "ERROR: El salario base no puede ser..."
                 icon: "error",
-                customClass: { popup: 'swal-modal', title: 'swal2-title', htmlContainer: 'swal2-html-container' }
+                confirmButtonColor: "#ef4444"
             });
+            console.error("Detalle del error:", error.response?.data);
         }
     };
    
