@@ -1,131 +1,198 @@
-import axios from 'axios'
-import React from 'react'
-import {useEffect, useState} from 'react'
-import { Button, Form, FormGroup } from 'react-bootstrap'
-import Navig from '../Navig'
-import { useHistory } from 'react-router-dom'
-import Swal from 'sweetalert2'
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import Navig from '../Navig';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 const NewClient = () => {
-   
-   
-   const[data, setData]=useState({id:"", nombre:"",apellido:"", identificacion:"", telefono:"", fRegistro:new Date().toISOString()})
- 
-   const handleChange=({target})=>{
-       setData({
-        ...data,
-        [target.name]:target.value
-
-       }
-
-       )
-   }
-
-   const URL ="http://localhost:8080/empleado/"
-   const history = useHistory();
-   
-   const handleSubmit = async (e) => {
-
-    e.preventDefault();
     
-    const response = await axios.post(URL,data);
+    // 1. Estado inicial completo (sin campos huérfanos)
+    const [data, setData] = useState({
+        id: "", 
+        nombre: "",
+        apellido: "", 
+        identificacion: "", 
+        telefono: "", 
+        ventas: "",
+        prestaciones: "",
+        salario: "",
+        fRegistro: new Date().toISOString()
+    });
 
-    console.log(response,response.data);
+    const handleChange = ({ target }) => {
+        setData({
+            ...data,
+            [target.name]: target.value
+        });
+    };
 
-    if(response.status === 200){
-        Swal.fire(
-            "Realizado Exitosamente !!",
-
-            `Empleado con C.C. ${response.data.identificacion} generado y listado`,
-            "success"
-        )
-
-        history.push("/empleado")
-
-    }
-    else{
-            console.log(response.status,response)
-            Swal.fire(
-
-                "Algo Salió Mal :C ",
-                "No se Generó el registro",
-                "error"
-            )
-    }
-
-   }
+    const URL = "http://localhost:8080/empleado/";
+    const history = useHistory();
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await axios.post(URL, data);
+            
+            if(response.status === 200 || response.status === 201) {
+                Swal.fire({
+                    title: "¡Realizado Exitosamente!",
+                    text: `Empleado con C.C. ${data.identificacion} generado y listado`,
+                    icon: "success",
+                    // Aseguramos que la alerta respete el Modo Noche
+                    customClass: { popup: 'swal-modal', title: 'swal2-title', htmlContainer: 'swal2-html-container' }
+                });
+                history.push("/empleado");
+            }
+        } catch (error) {
+            console.error("Error en la petición:", error);
+            Swal.fire({
+                title: "Algo Salió Mal :C",
+                text: "No se pudo generar el registro. Verifica tu conexión al servidor.",
+                icon: "error",
+                customClass: { popup: 'swal-modal', title: 'swal2-title', htmlContainer: 'swal2-html-container' }
+            });
+        }
+    };
    
     return (
-        <div>
-            {/* <a className="btn btn-secondary" href="/"> ← </a> */}
-            <Navig/>
-            <Form onSubmit={handleSubmit}>
-<Form.Group  className = "mb-3">
-    <Form.Control type="text" name="id" placeholder='Id' value={data.id} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
+        <div className="d-flex flex-column min-vh-100">
+            {/* 🪄 Estilos inyectados específicos para el formulario Glassmorphism */}
+            <style>
+                {`
+                    .form-glass-card {
+                        background-color: var(--card-bg);
+                        backdrop-filter: blur(10px);
+                        border-radius: 20px;
+                        border: 1px solid var(--border-color);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    }
+                    .custom-input {
+                        background-color: transparent !important;
+                        border: 1px solid var(--border-color);
+                        color: var(--text-global) !important;
+                        border-radius: 10px;
+                        padding: 10px 15px;
+                        transition: all 0.3s ease;
+                    }
+                    .custom-input:focus {
+                        border-color: var(--brand-color);
+                        box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+                        outline: none;
+                    }
+                    .custom-input::placeholder {
+                        color: var(--text-muted);
+                        opacity: 0.6;
+                    }
+                    .form-label {
+                        color: var(--text-global);
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                    }
+                `}
+            </style>
 
-<Form.Group className = "mb-3">
-    <Form.Control type="text" name="nombre" placeholder='Nombre' value={data.nombre} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
+            <Navig />
+            
+            <div className="container flex-grow-1 d-flex justify-content-center align-items-center py-5 mt-5">
+                <div className="form-glass-card p-4 p-md-5 w-100" style={{ maxWidth: '800px' }}>
+                    
+                    <h2 className="text-center mb-5 fw-bold" style={{ color: 'var(--text-global)' }}>
+                        Nueva <span style={{ color: 'var(--brand-color)', textShadow: '0 0 15px rgba(16, 185, 129, 0.3)' }}>Nómina</span>
+                    </h2>
 
-<Form.Group className = "mb-3">
-    <Form.Control type="text" name="apellido" placeholder='Apellido' value={data.apellido} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
+                    <Form onSubmit={handleSubmit}>
+                        
+                        {/* Fila 1 */}
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>ID de Registro</Form.Label>
+                                    <Form.Control className="custom-input" type="text" name="id" placeholder="Ej. EMP-001" value={data.id} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Fecha de Registro</Form.Label>
+                                    {/* Lo ponemos como readOnly para que el usuario no modifique el ISO string a mano */}
+                                    <Form.Control className="custom-input" type="text" name="fRegistro" value={data.fRegistro} readOnly style={{ opacity: 0.7 }} />
+                                </Form.Group>
+                            </div>
+                        </div>
 
+                        {/* Fila 2 */}
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Nombres</Form.Label>
+                                    <Form.Control className="custom-input" type="text" name="nombre" placeholder="Nombres del empleado" value={data.nombre} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Apellidos</Form.Label>
+                                    <Form.Control className="custom-input" type="text" name="apellido" placeholder="Apellidos del empleado" value={data.apellido} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                        </div>
 
-<Form.Group className = "mb-3">
-    <Form.Control type="number" name="identificacion" placeholder='Identificación' value={data.identificacion} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
+                        {/* Fila 3 */}
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Identificación (C.C.)</Form.Label>
+                                    <Form.Control className="custom-input" type="number" name="identificacion" placeholder="Número de documento" value={data.identificacion} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Celular de Contacto</Form.Label>
+                                    <Form.Control className="custom-input" type="number" name="telefono" placeholder="Ej. 3001234567" value={data.telefono} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                        </div>
 
+                        {/* Fila 4 (Métricas financieras) */}
+                        <div className="row mt-3">
+                            <div className="col-md-4">
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Ventas del Mes ($)</Form.Label>
+                                    <Form.Control className="custom-input" type="number" name="ventas" placeholder="0" value={data.ventas} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-4">
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Prestaciones ($)</Form.Label>
+                                    <Form.Control className="custom-input" type="number" name="prestaciones" placeholder="0" value={data.prestaciones} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-4">
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Sueldo Base ($)</Form.Label>
+                                    <Form.Control className="custom-input" type="number" name="salario" placeholder="0" value={data.salario} required onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                        </div>
 
-<Form.Group className = "mb-3">
-    <Form.Control type="number" name="telefono" placeholder='Celular' value={data.telefono} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
+                        <hr style={{ borderColor: 'var(--border-color)', opacity: 0.5 }} className="mb-4"/>
 
+                        {/* Botones de acción usando nuestras clases de index.css */}
+                        <div className="d-flex gap-3 justify-content-end">
+                            <button type="button" className="btn-neon-red px-4" onClick={() => history.push('/empleado')}>
+                                Cancelar
+                            </button>
+                            <button type="submit" className="btn-neon-green px-4">
+                                Guardar Registro
+                            </button>
+                        </div>
 
-<Form.Group className = "mb-3">
-    <Form.Control type="number" name="ventas" placeholder='$ Ventas en pesos' value={data.ventas} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
-
-
-
-<Form.Group className = "mb-3">
-    <Form.Control type="number" name="prestaciones" placeholder='$ Valor de las prestaciones en pesos' value={data.prestaciones} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
-
-
-
-<Form.Group className = "mb-3">
-    <Form.Control type="number" name="salario" placeholder='$ Valor del Sueldo en pesos' value={data.salario} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
-
-
-<Form.Group className = "mb-3">
-    <Form.Control type="new Date().toISOString()" name="fRegistro" placeholder='Fecha De Registro' value={data.fRegistro} required onChange={handleChange}>
-     </Form.Control>
-</Form.Group>
-
-<div className = "d-grid gap-2 d-md-flex">
-<Button type="submit" className=' btn btn-secondary'>Guardar</Button>
-<Button type="submit" className=' btn btn-danger' href='/empleado'>Cancelar</Button>
-</div>
-
-
-
-
-
-
-
-            </Form>
+                    </Form>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
 
-export default NewClient
+export default NewClient;
