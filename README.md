@@ -73,15 +73,16 @@ Once the containers are up and running, you can access the stack at:
 To register a new employee/payroll via API testing tools (like Postman) or the Frontend UI, you can use this JSON template within the request body:
 
 ```JSON
+
 {
-  "id": "001",
-  "nombre": "David Alejandro",
-  "apellido": "De los Reyes Ostos",
-  "identificacion": 1000222333,
-  "telefono": 3100000000,
-  "ventas": 1500000,
-  "prestaciones": 500000,
-  "salario": 2500000,
+ "id": "001",
+"nombre": "David Alejandro",
+"apellido": "De los reyes Ostos",
+"telefono": "3145273245",
+"identificacion": "111111",
+"ventas": 4000000,
+"prestaciones": 500000,
+"salario": 3000000
 }
 
 ```
