@@ -1,0 +1,45 @@
+package co.edu.unab.api.models;
+
+public class VentasModel {
+    private int directas;
+    private int detal;
+    private int mayoristas;
+    
+    public VentasModel() {
+    }
+
+    public VentasModel(int directas, int detal, int mayoristas) {
+        this.directas = directas;
+        this.detal = detal;
+        this.mayoristas = mayoristas;
+    }
+
+    public int getDirectas() {
+        return directas;
+    }
+
+    public void setDirectas(int directas) {
+        this.directas = directas;
+    }
+
+    public int getDetal() {
+        return detal;
+    }
+
+    public void setDetal(int detal) {
+        this.detal = detal;
+    }
+
+    public int getMayoristas() {
+        return mayoristas;
+    }
+
+    public void setMayoristas(int mayoristas) {
+        this.mayoristas = mayoristas;
+    }
+
+    
+
+
+
+}
