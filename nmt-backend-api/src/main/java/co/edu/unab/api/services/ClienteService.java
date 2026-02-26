@@ -51,6 +51,9 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR FINANCIERO: Las prestaciones deben ser proporcionales a la ley (mínimo un 20% del salario base). Ingrese un valor coherente.");
         }
 
+        if (cliente.getTelefono() == null || !cliente.getTelefono().matches("^[0-9]{10}$")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR CON EL NÚMERO DE CELULAR: Debe contener 10 dígitos numéricos (sin letras ni espacios).");
+        }
 
         if (cliente.getIdentificacion() == null || !cliente.getIdentificacion().matches("^[0-9]{6,10}$")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR DE IDENTIFICACIÓN: Debe contener entre 6 y 10 dígitos numéricos (sin letras ni espacios).");
@@ -63,14 +66,14 @@ public class ClienteService {
         }
 
 
-        String patronTextoConLargo = "^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\\s]{3,16}$";
+        String patronTextoConLargo = "^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\\s]{3,25}$";
 
         if (cliente.getNombre() == null || !cliente.getNombre().matches(patronTextoConLargo)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "REGLA DE NEGOCIO VIOLADA EN NOMBRE: Debe tener un mínimo de 3 caracteres, un máximo de 16, y solo puede contener letras.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "NOMBRE NO ACEPTADO: Debe tener un mínimo de 3 caracteres Y un máximo de 25.");
         }
 
         if (cliente.getApellido() == null || !cliente.getApellido().matches(patronTextoConLargo)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "REGLA DE NEGOCIO VIOLADA EN APELLIDO: Debe tener un mínimo de 3 caracteres, un máximo de 16, y solo puede contener letras.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "APELLIDO NO ACEPTADO: Debe tener un mínimo de 3 caracteres, Y un máximo de 25.");
         }
 
 
