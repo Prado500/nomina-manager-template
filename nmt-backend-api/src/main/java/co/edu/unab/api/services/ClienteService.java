@@ -73,7 +73,7 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "REGLA DE NEGOCIO VIOLADA EN APELLIDO: Debe tener un mínimo de 3 caracteres, un máximo de 16, y solo puede contener letras.");
         }
 
-     
+
         cliente.setNombre(cliente.getNombre().trim().toUpperCase());
         cliente.setApellido(cliente.getApellido().trim().toUpperCase());
 
