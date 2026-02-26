@@ -74,7 +74,7 @@ To register a new employee/payroll via API testing tools (like Postman) or the F
 
 ```JSON
 {
-  "id": "EMP-001",
+  "id": "001",
   "nombre": "David Alejandro",
   "apellido": "De los Reyes Ostos",
   "identificacion": 1000222333,
