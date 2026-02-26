@@ -57,7 +57,7 @@ const Navig = () => {
 
             <nav className="navbar navbar-expand-lg custom-navbar fixed-top py-3">
                 <div className="container">
-                    
+
                     <Link className="navbar-brand navbar-brand-neon" to="/">
                         Nómina<span> Manager Template</span>
                     </Link>
@@ -73,7 +73,17 @@ const Navig = () => {
                                 <Link className="nav-link nav-link-neon px-3" to="/">Inicio</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link nav-link-neon px-3" to="/empleado">Nóminas</Link>
+                                <Link
+                                    className="nav-link nav-link-neon px-3"
+                                    to="/empleado"
+                                    onClick={() => {
+                                        if (window.location.pathname === '/empleado') {
+                                            window.location.reload();
+                                        }
+                                    }}
+                                >
+                                    Nóminas
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 {/* Asumo que Nueva Nómina y New Client es la misma vista. Usa la ruta que corresponda */}
@@ -85,13 +95,13 @@ const Navig = () => {
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-neon px-3" to="/contacto">Contacto</Link>
                             </li>
-                            
+
                             {/* Botón de Modo Día / Noche */}
                             <li className="nav-item ms-lg-3 mt-2 mt-lg-0">
-                                <button 
-                                    onClick={toggleTheme} 
+                                <button
+                                    onClick={toggleTheme}
                                     className="btn btn-sm px-3 rounded-pill fw-bold"
-                                    style={{ 
+                                    style={{
                                         backgroundColor: isDark ? '#1e293b' : '#f1f5f9',
                                         color: isDark ? '#f8fafc' : '#334155',
                                         border: '1px solid var(--border-color)',
