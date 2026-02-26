@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # 1. Base de Datos MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: nomina_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  # 2. Backend Java Spring Boot
+  backend:
+    build: 
+      context: ./apiRestFinal
+    container_name: nomina_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      # Estas variables son inyectadas en tu application.properties
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DB=chiper
+    restart: unless-stopped
+
+  # 3. Frontend React
+  frontend:
+    build: 
+      context: ./frontend-react-router
+    container_name: nomina_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      # Ayuda a que React detecte cambios en tiempo real dentro de Docker
+      - WATCHPACK_POLLING=true
+    restart: unless-stopped
+
+volumes:
+  # Volumen persistente para que los datos de Mongo no se borren si se apaga el contenedor  
+  mongo_data:
