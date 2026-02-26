@@ -1,0 +1,149 @@
+/* src/index.css */
+
+:root {
+    --bg-global: #f8fafc;
+    --text-global: #334155;
+    --text-muted: #64748b;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --border-color: #e2e8f0;
+    --table-text: #1e293b;
+    --brand-color: #10b981;
+    --card-bg: #ffffff;
+    /* Nuevo: Fondo sutil para el hover de la tabla en modo claro */
+    --table-hover-bg: rgba(0, 0, 0, 0.05); 
+}
+
+[data-theme="dark"] {
+    --bg-global: #0f172a;
+    --text-global: #f8fafc;
+    --text-muted: #94a3b8;
+    --nav-bg: rgba(15, 23, 42, 0.85);
+    --border-color: rgba(16, 185, 129, 0.2);
+    --table-text: #cbd5e1;
+    --brand-color: #10b981;
+    --card-bg: #1e293b;
+    /* Nuevo: Hover verde translúcido para la tabla en modo oscuro */
+    --table-hover-bg: rgba(16, 185, 129, 0.15); 
+}
+
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-global) !important;
+    color: var(--text-global) !important;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding-top: 80px; 
+}
+
+/* --- ARREGLO DE LA TABLA --- */
+table, .table {
+    color: var(--table-text) !important;
+    transition: color 0.4s ease;
+}
+
+thead th {
+    color: var(--table-text) !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+td {
+    border-bottom: 1px solid var(--border-color) !important;
+    background-color: transparent !important;
+}
+
+/* HOVER DE LA TABLA */
+.table-hover tbody tr:hover td, 
+.table-hover tbody tr:hover th,
+tbody tr:hover td, 
+tbody tr:hover th {
+    background-color: var(--table-hover-bg) !important;
+    color: var(--text-global) !important;
+}
+
+/* --- ESTILOS DE BOTONES NEÓN PARA TABLAS --- */
+
+/* 1. Botón Verde (Nueva Nómina / Guardar) */
+.btn-neon-green {
+    background-color: transparent;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    border-radius: 8px;
+    padding: 6px 16px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-neon-green:hover {
+    background-color: var(--brand-color);
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 2. Botón Rojo (Eliminar) */
+.btn-neon-red {
+    background-color: transparent;
+    color: #ef4444; /* Rojo moderno */
+    border: 1px solid #ef4444;
+    border-radius: 8px;
+    padding: 6px 16px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.btn-neon-red:hover {
+    background-color: #ef4444;
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 3. Botón Gris/Azulado (Editar / Buscar) */
+.btn-neon-gray {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--text-muted);
+    border-radius: 8px;
+    padding: 6px 16px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.btn-neon-gray:hover {
+    background-color: var(--text-muted);
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(100, 116, 139, 0.5);
+    transform: translateY(-2px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* --- ARREGLO PARA MODALES (VENTANAS EMERGENTES) --- */
+.modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-global) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color) !important;
+}
+
+/* Por si acaso la alerta la hiciste con la librería SweetAlert */
+.swal-modal, .swal2-popup, .swal2-title, .swal2-html-container {
+    background-color: var(--card-bg) !important;
+    color: var(--text-global) !important;
+}

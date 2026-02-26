@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "Workspace",
+			"path": "..\\..\\..\\.."
+		},
+		{
+			"name": "last",
+			"path": "..\\..\\..\\..\\..\\..\\last"
+		},
+		{
+			"name": "frontend-react-routet",
+			"path": "..\\..\\..\\..\\..\\..\\frontend-react-routet"
+		}
+	],
+	"settings": {}
+}
