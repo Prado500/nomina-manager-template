@@ -82,7 +82,6 @@ To register a new employee/payroll via API testing tools (like Postman) or the F
   "ventas": 1500000,
   "prestaciones": 500000,
   "salario": 2500000,
-  "fRegistro": "2026-02-26T16:18:33.000Z"
 }
 
 ```
