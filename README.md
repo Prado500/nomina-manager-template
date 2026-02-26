@@ -13,7 +13,7 @@ This repository hosts the Full Stack codebase for **NominaManager**, a sales for
 ### 👨‍💻 My Contributions (David De Los Reyes - Full Stack Engineer)
 As the lead developer refactoring this template, my specific contributions were:
 * **Frontend Modernization (React):** Upgraded legacy code to support modern Node.js environments. Designed a custom UI/UX featuring *Glassmorphism*, *Neon Glow* effects, and a fully functional Dark/Light Mode toggle built over Bootstrap.
-* **Backend Integration (Spring Boot):** Connected the React SPA to the Java REST API using Axios, ensuring smooth asynchronous data fetching and state management.
+* **Backend Integration (Spring Boot):** Rote the source code in java and connected the React SPA to the Java REST API using Axios, ensuring smooth asynchronous data fetching and state management.
 * **Containerization (Docker):** Wrote the Dockerfiles and `docker-compose.yml` to orchestrate the entire Full Stack environment (Frontend, Backend, and MongoDB), resolving inter-container network routing.
 * **Database Stability (MongoDB):** Configured dynamic environment variables to seamlessly switch between local and containerized MongoDB instances without hardcoding credentials.
 
