@@ -1,4 +1,4 @@
-# 🏢 SalesManager - Full Stack Architecture
+# 🏢 NominaManager (payroll manager) Template -  Full Stack Architecture 
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
@@ -8,7 +8,7 @@
 
 ## 📋 Context & Contributions
 
-This repository hosts the Full Stack codebase for **SalesManager**, a sales force and payroll management system initially developed as a foundational project during the **Misión TIC 2022** certification. The architecture demonstrates the integration of a robust Enterprise backend with a highly reactive, modernized frontend.
+This repository hosts the Full Stack codebase for **NominaManager**, a sales force and payroll management system initially developed as a foundational project during the **Misión TIC 2022** certification. The architecture demonstrates the integration of a robust Enterprise backend with a highly reactive, modernized frontend.
 
 ### 👨‍💻 My Contributions (David De Los Reyes - Full Stack Engineer)
 As the lead developer refactoring this template, my specific contributions were:
