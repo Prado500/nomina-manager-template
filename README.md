@@ -46,9 +46,22 @@ While this repository is currently optimized for local containerized deployment 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/Prado500/nomina-manager-template.git
+git clone [https://github.com/Prado500/nomina-manager-template.git](https://github.com/Prado500/nomina-manager-template.git)
 cd nomina-manager-template
 ```
+
+## 2. Run with Docker (Recommended)
+
+Ensure you have the Docker daemon running on your machine. This command will download the necessary images, build the Java and React projects, and orchestrate the network automatically.
+
+```bash
+docker-compose up -d --build
+```
+
+## 3. Access the Application
+
+Once the containers are up and running, you can access the stack at:
+
 **Frontend UI:** http://localhost:3000
 
 **Backend API:** http://localhost:8080
