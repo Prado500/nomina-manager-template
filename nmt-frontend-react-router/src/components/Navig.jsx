@@ -67,7 +67,6 @@ const Navig = () => {
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        {/* Aquí están tus rutas originales, pero estilizadas */}
                         <ul className="navbar-nav ms-auto gap-2 align-items-center">
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-neon px-3" to="/">Inicio</Link>
@@ -76,9 +75,10 @@ const Navig = () => {
                                 <Link
                                     className="nav-link nav-link-neon px-3"
                                     to="/empleado"
-                                    onClick={() => {
-                                        if (window.location.pathname === '/empleado') {
-                                            window.location.reload();
+                                    onClick={(e) => {
+                                        if (window.location.pathname.includes('/empleado')) {
+                                            e.preventDefault(); // se fuerza a que vuelva y cargue la vista Nóminas aún si ya se está en ella para poder limpiar busquedas con filtro
+                                            window.location.href = '/empleado'; // se fuerza al navegador a recargar limpio
                                         }
                                     }}
                                 >
@@ -86,7 +86,7 @@ const Navig = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                {/* Asumo que Nueva Nómina y New Client es la misma vista. Usa la ruta que corresponda */}
+                                {/* Ojo aqui !!!! Nueva Nómina como boton apunta a la vista New Client y usa la ruta que corresponde */}
                                 <Link className="nav-link nav-link-neon px-3" to="/nuevaNomina">Crear Nómina</Link>
                             </li>
                             <li className="nav-item">
