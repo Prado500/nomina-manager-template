@@ -27,7 +27,7 @@ const NewClient = () => {
         });
     };
 
-    const URL = "http://localhost:8080/empleado/";
+    const URL = "http://localhost:8080/empleado";
     const history = useHistory();
 
     const handleSubmit = async (e) => {
