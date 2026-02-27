@@ -28,19 +28,19 @@ public class ClienteController {
     @GetMapping()
     public ArrayList<ClienteModel> obtenerClientes(){
         return  clienteService.obtenerClientes();
-            
+
     }
 
     @PostMapping()
-    public ClienteModel guardarCliente(@RequestBody ClienteModel cliente){
+    public ClienteModel guardarCliente(@RequestBody ClienteModel cliente) {
         return clienteService.guardarCliente(cliente);
     }
-    
+
     PutMapping(path = "/{id}")
     public ClienteModel actualizarCliente(@PathVariable("id") String id, @RequestBody ClienteModel cliente){
-
-    }
         return clienteService.actualizarCliente(id, cliente);
+    }
+
 
     @DeleteMapping(path = "/{id}")
     public String eliminarClientePorId(@PathVariable("id") String id){
@@ -51,25 +51,25 @@ public class ClienteController {
             return "No se pudo eliminar el empleado con el id: "+id;
         }
     }
-    
+
     @GetMapping(path = "/{id}")
     public Optional<ClienteModel> obtenerClientePorId(@PathVariable("id") String id){
         return this.clienteService.obtenerClientePorId(id);
     }
-    
+
     @GetMapping(path = "/nombre/{nombre}")
     public ArrayList<ClienteModel> clientePorNombre(@PathVariable("nombre") String nombre){
-     return this.clienteService.obtenerClientePorNombre(nombre);
-}
+        return this.clienteService.obtenerClientePorNombre(nombre);
+    }
 
     @GetMapping(path = "/apellido/{apellido}")
     public ArrayList<ClienteModel> clientePorApellido(@PathVariable("apellido") String apellido){
-     return this.clienteService.obtenerClientePorApellido(apellido);}
+        return this.clienteService.obtenerClientePorApellido(apellido);}
 
-     @GetMapping(path = "/identificacion/{identificacion}")
-     public ArrayList<ClienteModel> clientePorIdentificacion(@PathVariable("identificacion") String identificacion){
+    @GetMapping(path = "/identificacion/{identificacion}")
+    public ArrayList<ClienteModel> clientePorIdentificacion(@PathVariable("identificacion") String identificacion){
         return this.clienteService.obtenerClientePorIdentificacion(identificacion);
-    
+
     }
 
 }
