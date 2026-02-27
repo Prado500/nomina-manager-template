@@ -36,7 +36,7 @@ public class ClienteController {
         return clienteService.guardarCliente(cliente);
     }
 
-    PutMapping(path = "/{id}")
+    @PutMapping(path = "/{id}")
     public ClienteModel actualizarCliente(@PathVariable("id") String id, @RequestBody ClienteModel cliente){
         return clienteService.actualizarCliente(id, cliente);
     }
