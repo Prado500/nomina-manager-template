@@ -33,8 +33,8 @@ public class ClienteController {
     }
 
     @PostMapping()
-    public ClienteModel guardarCliente(@RequestBody ClienteModel cliente) {
-        return clienteService.guardarCliente(cliente);
+    public ClienteModel crearCliente(@RequestBody ClienteModel cliente) {
+        return clienteService.validarYCrearCliente(cliente);
     }
 
     @PutMapping(path = "/{id}")
