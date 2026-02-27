@@ -88,7 +88,10 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERROR: No se encontró un empleado con el ID " + id + " para actualizar.");
         }
 
+        Optional<ClienteModel> clienteAntes = this.obtenerClientePorId(id);
         cliente.setId(id);
+        cliente.setIdentificacion(clienteAntes.get().getIdentificacion());
+        cliente.setTelefono(clienteAntes.get().getTelefono());
 
         double salarioMinimoLegal = 2000000.0;
         if (cliente.getSalario() < salarioMinimoLegal) {
