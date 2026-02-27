@@ -19,7 +19,7 @@ import co.edu.unab.api.models.ClienteModel;
 import co.edu.unab.api.services.ClienteService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/empleado")
 public class ClienteController {
     @Autowired
@@ -36,6 +36,10 @@ public class ClienteController {
         return clienteService.guardarCliente(cliente);
     }
     
+    PutMapping(path = "/{id}")
+    public ClienteModel actualizarCliente(@PathVariable("id") String id, @RequestBody ClienteModel cliente){
+        return clienteService.actualizarCliente(id, cliente);
+
     @DeleteMapping(path = "/{id}")
     public String eliminarClientePorId(@PathVariable("id") String id){
         boolean resultadoEliminar=this.clienteService.eliminarCliente(id);
