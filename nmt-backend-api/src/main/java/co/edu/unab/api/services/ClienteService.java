@@ -83,6 +83,15 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    public ClienteModel actualizarCliente(String id, ClienteModel cliente){
+        if (!clienteRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERROR: No se encontró un empleado con el ID " + id + " para actualizar.");
+        }
+        cliente.setId(id); // Aseguramos que conserve su ID original y no cree uno nuevo
+        validarReglasDeNegocio(cliente);
+        return clienteRepository.save(cliente);
+    }
+
     public boolean eliminarCliente(String id){
         if (clienteRepository.existsById(id)){
             clienteRepository.deleteById(id);
