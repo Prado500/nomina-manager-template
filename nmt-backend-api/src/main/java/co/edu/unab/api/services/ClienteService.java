@@ -88,7 +88,7 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERROR: No se encontró un empleado con el ID " + id + " para actualizar.");
         }
         cliente.setId(id); // Aseguramos que conserve su ID original y no cree uno nuevo
-        validarReglasDeNegocio(cliente);
+        guardarCliente(cliente);
         return clienteRepository.save(cliente);
     }
 
