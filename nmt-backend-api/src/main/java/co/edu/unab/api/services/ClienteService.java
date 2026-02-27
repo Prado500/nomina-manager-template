@@ -21,9 +21,9 @@ public class ClienteService {
     }
 
     // VALIDACIONES
-    public ClienteModel guardarCliente(ClienteModel cliente){
 
-        // ---  REGLAS DE NEGOCIO  ---
+    public ClienteModel validarYCrearCliente(ClienteModel cliente){
+
         if (cliente.getId() == null || cliente.getId().trim().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR CRÍTICO EN ID: El ID de registro no puede estar en blanco.");
         }
@@ -31,11 +31,9 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "FORMATO INVÁLIDO EN ID: El ID debe ser exclusivamente un número no negativo.");
         }
 
-
         if (clienteRepository.existsById(cliente.getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR DE DUPLICADO: Ya existe un empleado registrado con el ID " + cliente.getId() + ".");
         }
-
 
         double salarioMinimoLegal = 2000000.0;
         if (cliente.getSalario() < salarioMinimoLegal) {
@@ -76,20 +74,59 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "APELLIDO NO ACEPTADO: Debe tener un mínimo de 3 caracteres, Y un máximo de 25.");
         }
 
+        cliente.setNombre(cliente.getNombre().trim().toUpperCase());
+        cliente.setApellido(cliente.getApellido().trim().toUpperCase());
+
+        return  clienteRepository.save(cliente);
+    }
+
+
+    public ClienteModel actualizarCliente(String id, ClienteModel cliente){
+
+
+        if (!clienteRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERROR: No se encontró un empleado con el ID " + id + " para actualizar.");
+        }
+
+        cliente.setId(id);
+
+        double salarioMinimoLegal = 2000000.0;
+        if (cliente.getSalario() < salarioMinimoLegal) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR FINANCIERO: El salario base no puede ser inferior al mínimo legal establecido ($2.000.000).");
+        }
+
+        if (cliente.getVentas() < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR FINANCIERO: El valor de ventas del mes no puede ser negativo.");
+        }
+
+
+        double cargaPrestacionalMinima = cliente.getSalario() * 0.20;
+        if (cliente.getPrestaciones() < cargaPrestacionalMinima) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR FINANCIERO: Las prestaciones deben ser proporcionales a la ley (mínimo un 20% del salario base). Ingrese un valor coherente.");
+        }
+
+        if (cliente.getTelefono() == null || !cliente.getTelefono().matches("^[0-9]{10}$")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR CON EL NÚMERO DE CELULAR: Debe contener 10 dígitos numéricos (sin letras ni espacios).");
+        }
+
+        if (cliente.getIdentificacion() == null || !cliente.getIdentificacion().matches("^[0-9]{6,10}$")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR DE IDENTIFICACIÓN: Debe contener entre 6 y 10 dígitos numéricos (sin letras ni espacios).");
+        }
+
+        String patronTextoConLargo = "^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\\s]{3,25}$";
+
+        if (cliente.getNombre() == null || !cliente.getNombre().matches(patronTextoConLargo)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "NOMBRE NO ACEPTADO: Debe tener un mínimo de 3 caracteres Y un máximo de 25.");
+        }
+
+        if (cliente.getApellido() == null || !cliente.getApellido().matches(patronTextoConLargo)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "APELLIDO NO ACEPTADO: Debe tener un mínimo de 3 caracteres, Y un máximo de 25.");
+        }
 
         cliente.setNombre(cliente.getNombre().trim().toUpperCase());
         cliente.setApellido(cliente.getApellido().trim().toUpperCase());
 
-        return clienteRepository.save(cliente);
-    }
-
-    public ClienteModel actualizarCliente(String id, ClienteModel cliente){
-        if (!clienteRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERROR: No se encontró un empleado con el ID " + id + " para actualizar.");
-        }
-        cliente.setId(id); // Aseguramos que conserve su ID original y no cree uno nuevo
-        guardarCliente(cliente);
-        return clienteRepository.save(cliente);
+        return  clienteRepository.save(cliente);
     }
 
     public boolean eliminarCliente(String id){
