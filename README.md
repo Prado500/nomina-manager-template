@@ -40,7 +40,7 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 
 ![Create Payroll](images/nueva_nomina.jpg)
 
-### Input Validation According to Bussines Rules
+### Use of SweetAlert 
 
 ![Multiple Input Validation Restrictions According to Bussines Rules](images/err_ventas_negativas.jpg)
 
