@@ -42,7 +42,7 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 
 ### Payroll Management / Edit
 *(Interfaz para la gestión y actualización de datos)*
-![Input Validation According to Bussines Rules](err_ventas_negativas.jpg)
+![Input Validation According to Bussines Rules](images/err_ventas_negativas.jpg)
 
 ---
 
