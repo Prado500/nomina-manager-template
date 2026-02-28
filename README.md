@@ -30,6 +30,22 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 - **Containerized Stack:** Fully Dockerized for "one-click" local deployment.
 - **Single Page Application (SPA):** Instant navigation without page reloads using React Router DOM.
 
+## 🖥️ User Interface (UI)
+
+### Main Dashboard
+*(Aquí puedes mostrar la pantalla central con el listado de empleados)*
+![Main Dashboard](ruta-de-tu-imagen-pantalla-central.jpg)
+
+### Payroll Registration
+*(Interfaz para crear una nueva nómina)*
+![Create Payroll](ruta-de-tu-imagen-crear-nomina.jpg)
+
+### Payroll Management / Edit
+*(Interfaz para la gestión y actualización de datos)*
+![Edit Payroll](ruta-de-tu-imagen-editar-nomina.jpg)
+
+---
+
 ## ☁️ Deployment Readiness
 
 While this repository is currently optimized for local containerized deployment via Docker Compose, the architecture is designed to be easily integrated into CI/CD pipelines (such as Azure DevOps or GitHub Actions) deploying to cloud services like Azure App Service or AWS ECS.
