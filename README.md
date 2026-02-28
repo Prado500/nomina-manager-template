@@ -33,15 +33,15 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 ## 🖥️ User Interface (UI)
 
 ### Main Dashboard
-*(Aquí puedes mostrar la pantalla central con el listado de empleados)*
+
 ![Main Dashboard](images/registro_exitoso.jpg)
 
 ### Payroll Registration
-*(Interfaz para crear una nueva nómina)*
+
 ![Create Payroll](images/nueva_nomina.jpg)
 
 ### Input Validation According to Bussines Rules
-*(Interfaz para la gestión y actualización de datos)*
+
 ![Multiple Input Validation Restrictions According to Bussines Rules](images/err_ventas_negativas.jpg)
 
 ---
