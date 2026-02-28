@@ -34,7 +34,7 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 
 ### Main Dashboard
 
-![Main Dashboard](images/registro_exitoso.jpg)
+![Main Dashboard](images/dashboard_principal.jpg)
 
 ### Payroll Registration
 
