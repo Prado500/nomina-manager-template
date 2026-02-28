@@ -40,9 +40,9 @@ A CRUD-based management system developed with **React** (Frontend), **Java Sprin
 *(Interfaz para crear una nueva nómina)*
 ![Create Payroll](images/nueva_nomina.jpg)
 
-### Payroll Management / Edit
+### Input Validation 
 *(Interfaz para la gestión y actualización de datos)*
-![Input Validation According to Bussines Rules](images/err_ventas_negativas.jpg)
+![Multiple Input Validation Restrictions According to Bussines Rules](images/err_ventas_negativas.jpg)
 
 ---
 
